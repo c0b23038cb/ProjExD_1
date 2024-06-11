@@ -10,6 +10,8 @@ def main():
     screen = pg.display.set_mode((800, 600))
     clock  = pg.time.Clock()
     bg_img = pg.image.load("fig/pg_bg.jpg")
+    bg_image = pg.image.load("fig/pg_bg.jpg")
+    bg_image = pg.transform.flip(bg_img, True, False)
     kk_image = pg.image.load("fig/3.png")
     kk_image = pg.transform.flip(kk_image, True, False)
     kk_image = pg.transform.rotozoom(kk_image, 10, 1.0)
@@ -18,8 +20,10 @@ def main():
         for event in pg.event.get():
             if event.type == pg.QUIT: return
         
-        x = tmr % 800
+        x = tmr % 3200
         screen.blit(bg_img, [-x, 0])
+        screen.blit(bg_image, [-x+1600, 0])
+        screen.blit(bg_image, [-x+3200, 0])
         img_rct = kk_image.get_rect()
         img_rct.center = 300, 200
         screen.blit(kk_image,img_rct)
